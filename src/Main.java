@@ -34,8 +34,8 @@ public class Main {
                 case 2:
                     if (carro.getLigado() == false) {
                         System.out.println("O carro está desligado!");
-                    } else if (carro.getVelocidadeAtual() > 0) {
-                        System.out.println("Impossível desligar o carro em movimento!");
+                    } else if (carro.getVelocidadeAtual() > 0 && carro.getMarcha() != 0) {
+                        System.out.println("Impossível desligar o carro em movimento ou sem ser na marcha 0!");
                     } else {
                         carro.desligar();
                         System.out.println("Desligando o carro...");
@@ -93,7 +93,39 @@ public class Main {
                 case 7:
                     if (carro.getLigado() == false) {
                         System.out.println("Impossível trocar a marcha de um carro desligado...");
+                    } else {
+                        System.out.println("Marcha atual: " + carro.getMarcha());
+                        System.out.println("1. Aumentar marcha");
+                        System.out.println("2. Reduzir marcha");
+                        int marcha = sc.nextInt();
+                        sc.nextLine();
+
+                        switch (marcha) {
+                            case 1:
+                                System.out.println("Aumentando a marcha...");
+                                carro.aumentarMarcha();
+                                System.out.println("Marcha atual: " + carro.getMarcha());
+                            break;
+
+                            case 2:
+                                System.out.println("Reduzindo a marcha...");
+                                carro.reduzirMarcha();
+                                System.out.println("Marcha atual: " + carro.getMarcha());
+                            break;
+                        }
                     }
+                break;
+
+                case 8:
+                    if (carro.getLigado() == true || carro.getVelocidadeAtual() > 0) {
+                        System.out.println("Por favor, antes de sair do carro...");
+                        System.out.println("Desacelere o carro até a marcha 0 e o desligue. ");
+                    } else  {
+                        sc.close();
+                        System.out.println("Saindo do carro..");
+                        return;
+                    }
+                break;
             }
         }
     }

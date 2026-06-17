@@ -9,6 +9,7 @@ public class Carro {
         this.velocidadeAtual = 0;
         this.marcha = 1;
         this.ligado = false;
+        this.direcao = "Centro";
     }
 
     public void ligar(){
@@ -67,24 +68,109 @@ public class Carro {
         } else if (marcha == 4 && velocidadeAtual == 60) {
             System.out.println("Impossivel desacelerar mais do que 60 KM/H na quarta marcha");
             return;
-        } else if (marcha == 5 && velocidadeAtual >= 80) {
+        } else if (marcha == 5 && velocidadeAtual == 80) {
             System.out.println("Impossivel desacelerar mais do que 80 KM/H na quinta marcha");
             return;
-        } else if (marcha == 6 && velocidadeAtual >= 100) {
+        } else if (marcha == 6 && velocidadeAtual == 100) {
             System.out.println("Impossivel desacelerar mais do que 100 KM/H na sexta marcha");
             return;
         }
 
-        velocidadeAtual = velocidadeAtual - 1;
+        velocidadeAtual = velocidadeAtual - 5;
         System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
     }
 
     public void aumentarMarcha() {
-        this.marcha++;
+        if (marcha == 0){
+            marcha++;
+        } else if (marcha == 1) {
+            if (velocidadeAtual < 20) {
+                System.out.println("Impossivel aumentar a marcha estando abaixo de 20 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else {
+                marcha++;
+            }
+        } else if (marcha == 2) {
+            if (velocidadeAtual < 40) {
+                System.out.println("Impossível aumentar a marcha estando abaixo de 40 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else {
+                marcha++;
+            }
+        } else if (marcha == 3) {
+            if (velocidadeAtual < 60) {
+                System.out.println("Impossível aumentar a marcha estando abaixo de 60 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else {
+                marcha++;
+            }
+        } else if (marcha == 4) {
+            if (velocidadeAtual < 80) {
+                System.out.println("Impossível aumentar a marcha estando abaixo de 80 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else  {
+                marcha++;
+            }
+        } else if (marcha == 5) {
+            if (velocidadeAtual < 100) {
+                System.out.println("Impossível aumentar a marcha estando abaixo de 100 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else  {
+                marcha++;
+            }
+        } else if (marcha == 6) {
+            System.out.println("Impossível aumentar além do limite de marchas!");
+            return;
+        }
     }
 
-    public void desaumentarMarcha() {
-        this.marcha--;
+    public void reduzirMarcha() {
+        if (marcha == 0){
+            System.out.println("Impossível reduzir além da marcha 0!");
+            return;
+        } else if (marcha == 1) {
+            if (velocidadeAtual > 0) {
+                System.out.println("Impossivel diminuir para a marcha 0 estando em movimento!");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else {
+                marcha--;
+            }
+        } else if (marcha == 2) {
+            if (velocidadeAtual > 20) {
+                System.out.println("Impossível diminuir para a primeira marcha estando acima de 20 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else {
+                marcha--;
+            }
+        } else if (marcha == 3) {
+            if (velocidadeAtual > 40) {
+                System.out.println("Impossível diminuir para a segunda marcha estando acima de 40 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else {
+                marcha--;
+            }
+        } else if (marcha == 4) {
+            if (velocidadeAtual > 60) {
+                System.out.println("Impossível diminuir para a terceira marcha estando acima de 60 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else  {
+                marcha--;
+            }
+        } else if (marcha == 5) {
+            if (velocidadeAtual > 80) {
+                System.out.println("Impossível diminuir para a quarta marcha estando acima de 80 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else  {
+                marcha--;
+            }
+        } else if (marcha == 6) {
+            if (velocidadeAtual > 100) {
+                System.out.println("Impossível diminuir para a quinta marcha estando acima de 100 KM/H");
+                System.out.println("Velocidade atual: " + getVelocidadeAtual() + "KM/H");
+            } else  {
+                marcha--;
+            }
+        }
     }
 
     public void mudarEsquerdaDirecao() {
@@ -97,5 +183,9 @@ public class Carro {
 
     public boolean getLigado() {
         return ligado;
+    }
+
+    public int getMarcha() {
+        return marcha;
     }
 }
